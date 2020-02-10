@@ -9,4 +9,7 @@ CREATE TABLE burgers (
 );
 
 USE burgers_db;
+DROP TABLE burgers;
+
+USE burgers_db;
 SELECT * FROM burgers;
