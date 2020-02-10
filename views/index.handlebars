@@ -1,8 +1,26 @@
-<h2>Burgers</h2>
+<h1>Burgers</h1>
+
+<h2>Non-devoured burgers</h2>
 
 <ul>
     {{#each burgers}}
-    <li>{{burger_name}} - Devoured: {{devoured}}</li>
+        {{#unless devoured}}
+            {{> burgers/burger-block devour=true}}
+
+            {{!-- <li>{{burger_name}} - Devoured: {{devoured}}</li> --}}
+        {{/unless}}
+    {{/each}}
+</ul>
+
+<h2>Devoured burgers</h2>
+
+<ul>
+    {{#each burgers}}
+        {{#if devoured}}
+            {{> burgers/burger-block devour=false}}
+
+            {{!-- <li>{{burger_name}} - Devoured: {{devoured}}</li> --}}
+        {{/if}}
     {{/each}}
 </ul>
 
@@ -25,6 +43,24 @@
 <script>
 
     $(function() {
+
+        $(".change-devour").on("click", function(e){
+            let id = $(this).data("id");
+            let newDevour = $(this).data("newdevour");
+
+            let newDevourState = {
+                devoured: newDevour
+            };
+
+            $.ajax("/api/burgers/" + id, {
+                type: "PUT",
+                data: newDevourState
+            }).then(function(){
+                console.log("Changed devour to " + newDevour);
+                location.reload();
+            })
+        })
+
         $("#addburger").on("submit", function(e){
             e.preventDefault();
 

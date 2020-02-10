@@ -12,15 +12,12 @@ let burger = {
         orm.insertOne(cols, vals, function(res) {
             cb(res);
         });
+    },
+    updateOne: function(ojbColVals, condition, cb) {
+        orm.updateOne("burgers", ojbColVals, condition, function(res){
+            cb(res)
+        })
     }
-    // insertOne: function(burgerName, devoured, cb){
-    //     orm.insertOne(burgerName, devoured, function(res) {
-    //         cb(res);
-    //     });
-    // }
-    // insertOne: function()
-    // orm.insertOne("wfe", false),
-    // orm.updateOne("burger_name", "BaconBurger", "devoured", true)
 }
 
 module.exports = burger;
