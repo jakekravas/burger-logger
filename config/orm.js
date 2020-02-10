@@ -42,7 +42,8 @@ let orm = {
     },
     insertOne: function(cols, vals, cb){
 
-        let queryString = `INSERT INTO burgers (${cols.toString()}) VALUES (?, ?)`;
+        // let queryString = `INSERT INTO burgers (${cols.toString()}) VALUES (?, ?)`;
+        let queryString = `INSERT INTO burgers (${cols.toString()}) VALUES (?)`;
         connection.query(queryString, vals, function(err, result) {
             if (err) throw err;
             cb(result);

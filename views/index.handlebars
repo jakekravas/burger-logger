@@ -34,11 +34,11 @@
             <input type="text" id="burgernameinp" name="burgername">
         </div>
 
-        <div class="form-group">
+        {{!-- <div class="form-group">
             <label for="devoured">Devoured?</label>
             <input type="radio" name="devoured" value="1"> Devoured
             <input type="radio" name="devoured" value="0" checked> Not devoured
-        </div>
+        </div> --}}
 
         <button type="submit">Add burger</button>
     </form>
@@ -70,7 +70,7 @@
 
             let newBurger = {
                 burgername: $("#burgernameinp").val(),
-                devoured: $("[name = devoured]:checked").val()
+                {{!-- devoured: $("[name = devoured]:checked").val() --}}
             };
             console.log(newBurger)
             $.ajax("/api/burgers", {
@@ -81,6 +81,23 @@
                 location.reload();
             })
         })
+
+        {{!-- $("#addburger").on("submit", function(e){
+            e.preventDefault();
+
+            let newBurger = {
+                burgername: $("#burgernameinp").val(),
+                devoured: $("[name = devoured]:checked").val()
+            };
+            console.log(newBurger)
+            $.ajax("/api/burgers", {
+                type: "POST",
+                data: newBurger
+            }).then(function(){
+                console.log("created new burger");
+                location.reload();
+            })
+        }) --}}
 
     })
 </script>
